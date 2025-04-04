@@ -1,0 +1,24 @@
+{
+  "name": "projeto_estudo_express",
+  "version": "1.0.0",
+  "description": "Projeto para estudo do express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergiorsoares82/projeto_estudo_express.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "typescript"
+  ],
+  "author": "Sergio Soares",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sergiorsoares82/projeto_estudo_express/issues"
+  },
+  "homepage": "https://github.com/sergiorsoares82/projeto_estudo_express#readme"
+}
