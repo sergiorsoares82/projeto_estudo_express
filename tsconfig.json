@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    // "outDir": "./dist",
+    "rootDir": "./src",
+    // "strict": true,
+    // "module": "CommonJS",
+    // "target": "ES6",
+    // Enables compatibility between CommonJS and ES Modules (import/export)
+    "esModuleInterop": true
+  }
+}
