@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx src/index.ts"
+    "dev": "tsx src/index.ts",
+    "build": "tsx --noEmit src/index.ts",
+    "start": "tsx --noEmit src/index.ts"
   },
   "repository": {
     "type": "git",
