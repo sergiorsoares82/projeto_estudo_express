@@ -1,8 +1,12 @@
-import express, { type Request, type Response } from "express";
+import cors from "cors";
 import dotenv from "dotenv";
+import express from "express";
 import { existsSync } from "node:fs";
 
 const app = express();
+
+app.use(cors());
+app.use(express.json());
 
 const PORT = 3001;
 const envFile = `.env.${process.env.NODE_ENV}`;

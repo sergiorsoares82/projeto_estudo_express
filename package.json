@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/sergiorsoares82/projeto_estudo_express#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "nodemon": "^3.1.9"
   },
