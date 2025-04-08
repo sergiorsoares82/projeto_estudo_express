@@ -2,7 +2,7 @@
   "name": "projeto_estudo_express",
   "version": "1.0.0",
   "description": "Projeto para estudo do express",
-  "main": "index.js",
+  "main": "index.ts",
   "type": "module",
   "scripts": {
     "dev": "NODE_ENV=development tsx --watch src/index.ts",
