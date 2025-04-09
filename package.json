@@ -5,6 +5,7 @@
   "main": "index.ts",
   "type": "module",
   "scripts": {
+    "start": "tsx --watch src/index.ts",
     "dev": "NODE_ENV=development tsx --watch src/index.ts",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
