@@ -2,7 +2,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import { existsSync } from "node:fs";
-import router from "./routes";
+import router from "./routes/index.js";
 
 const app = express();
 
