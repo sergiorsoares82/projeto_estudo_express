@@ -2,6 +2,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import { existsSync } from "node:fs";
+import router from "./routes";
 
 const app = express();
 
@@ -16,9 +17,7 @@ const envFile = `.env.${process.env.NODE_ENV}`;
 //   dotenv.config(); // fallback para .env
 // }
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+app.use(router);
 
 app.use((req, res) => {
   res.status(404).json({ error: "Route not found" });
