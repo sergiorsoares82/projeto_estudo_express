@@ -3,8 +3,10 @@
     "outDir": "./dist",
     "rootDir": "src",
     "strict": true,
-    "module": "CommonJS",
-    "target": "ES6",
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "target": "es2020",
+    "moduleResolution": "node",
     // Enables compatibility between CommonJS and ES Modules (import/export)
     "esModuleInterop": true
   }
