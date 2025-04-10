@@ -1,4 +1,5 @@
 import express from "express";
+import status from "../pages/api/v1/status/index.js";
 
 const router = express.Router();
 
@@ -9,5 +10,7 @@ const router = express.Router();
 router.get("/", (req, res) => {
   res.send("API is running");
 });
+
+router.get("/api/v1/status", status);
 
 export default router;
