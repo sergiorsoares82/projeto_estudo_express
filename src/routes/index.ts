@@ -1,5 +1,5 @@
 import express from "express";
-import status from "../pages/api/v1/status";
+import status from "../pages/api/v1/status/index.js";
 
 const router = express.Router();
 
