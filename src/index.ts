@@ -1,21 +1,20 @@
 // import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
-import { existsSync } from "node:fs";
+// import { existsSync } from "node:fs";
 import router from "./routes/index.js";
+
+dotenv.config({
+  path: `./src/infra/.env.development`,
+});
 
 const app = express();
 
 // app.use(cors());
-app.use(express.json());
+// app.use(express.json());
 
 const PORT = 3001;
-const envFile = `.env.${process.env.NODE_ENV}`;
-// if (existsSync(envFile)) {
-//   dotenv.config({ path: envFile });
-// } else {
-//   dotenv.config(); // fallback para .env
-// }
+// const envFile = `.env.${process.env.NODE_ENV}`;
 
 app.use(router);
 
