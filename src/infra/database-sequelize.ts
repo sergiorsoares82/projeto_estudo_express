@@ -10,7 +10,12 @@ const querySequelize = async () => {
     port: process.env.SEQUELIZE_PORT
       ? parseInt(process.env.SEQUELIZE_PORT)
       : 5432,
-    ssl: true,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false, // use true se tiver um certificado válido
+      },
+    },
   });
 
   const result = await sequelize.query("SELECT NOW()");
