@@ -5,7 +5,7 @@ const querySequelize = async () => {
     dialect: "postgres",
     host: process.env.SEQUELIZE_HOST,
     database: process.env.SEQUELIZE_DATABASE,
-    username: process.env.SEQUELIZE_USERNAME,
+    username: process.env.SEQUELIZE_USER,
     password: process.env.SEQUELIZE_PASSWORD,
     port: process.env.SEQUELIZE_PORT
       ? parseInt(process.env.SEQUELIZE_PORT)
