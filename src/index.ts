@@ -1,20 +1,11 @@
-// import cors from "cors";
-import dotenv from "dotenv";
+import "./config/env.js";
 import express from "express";
-// import { existsSync } from "node:fs";
+import "reflect-metadata";
 import router from "./routes/index.js";
-
-dotenv.config({
-  path: `./src/infra/.env.development`,
-});
 
 const app = express();
 
-// app.use(cors());
-// app.use(express.json());
-
 const PORT = 3001;
-// const envFile = `.env.${process.env.NODE_ENV}`;
 
 app.use(router);
 

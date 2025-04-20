@@ -5,7 +5,10 @@
   "main": "index.ts",
   "type": "module",
   "scripts": {
-    "dev": "NODE_ENV=development tsx --watch src/index.ts",
+    "dev": "npm run services:up && next dev",
+    "services:up": "docker compose -f infra/compose.yaml up -d",
+    "services:stop": "docker compose -f infra/compose.yaml stop",
+    "services:down": "docker compose -f infra/compose.yaml down",
     "build": "tsc",
     "start": "node dist/index.js",
     "lint:check": "prettier --check .",
@@ -29,6 +32,7 @@
   },
   "homepage": "https://github.com/sergiorsoares82/projeto_estudo_express#readme",
   "dependencies": {
+    "@prisma/client": "^6.6.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "nodemon": "^3.1.9",
@@ -36,18 +40,21 @@
     "pg-hstore": "^2.3.4",
     "reflect-metadata": "^0.2.2",
     "sequelize": "^6.37.7",
-    "sequelize-typescript": "^2.1.6"
+    "sequelize-typescript": "^2.1.6",
+    "typeorm": "^0.3.22"
   },
   "devDependencies": {
     "@types/express": "^5.0.1",
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.14.0",
+    "@types/node": "^22.14.1",
     "@types/pg": "^8.11.11",
     "@types/validator": "^13.12.3",
     "dotenv": "^16.4.7",
+    "dotenv-cli": "^8.0.0",
     "jest": "^29.7.0",
     "prettier": "^3.5.3",
+    "prisma": "^6.6.0",
     "tsx": "^4.19.3",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.3"
   }
 }

@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize-typescript";
 
 const querySequelize = async () => {
+  console.log("SEQUELIZE_PORT", process.env.SEQUELIZE_PORT);
   const sequelize = new Sequelize({
     dialect: "postgres",
     host: process.env.SEQUELIZE_HOST,
@@ -10,12 +11,12 @@ const querySequelize = async () => {
     port: process.env.SEQUELIZE_PORT
       ? parseInt(process.env.SEQUELIZE_PORT)
       : 5432,
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false, // use true se tiver um certificado válido
-      },
-    },
+    // dialectOptions: {
+    //   ssl: {
+    //     require: true,
+    //     rejectUnauthorized: false, // use true se tiver um certificado válido
+    //   },
+    // },
   });
 
   const result = await sequelize.query("SELECT NOW()");
