@@ -1,5 +1,5 @@
 import pg from "pg";
-const query = async () => {
+const query = async (queryObject: string) => {
   const client = new pg.Client({
     user: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
@@ -17,10 +17,14 @@ const query = async () => {
   });
 
   await client.connect();
-  const res = await client.query("SELECT NOW()");
-  console.log(res.rows[0]);
-  await client.end();
-  return res;
+  try {
+    const result = await client.query(queryObject);
+    return result;
+  } catch (error) {
+    console.error(error);
+  } finally {
+    await client.end();
+  }
 };
 
 export default query;

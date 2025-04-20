@@ -8,8 +8,8 @@ import typeORMStatus from "../pages/api/v1/status/typeorm-status.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const result = await query();
-  console.log(result.rows);
+  const result = await query("SELECT 1 + 1 as sum");
+  console.log(result?.rows);
   res.send("API is running");
 });
 
