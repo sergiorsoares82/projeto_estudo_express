@@ -10,6 +10,7 @@ export const AppDataSource = new DataSource({
   synchronize: false,
   logging: false,
   entities: [], // adicione suas entidades aqui, se for usar ORM
+  ssl: process.env.NODE_ENV === "development" ? false : true,
 });
 
 export async function queryTypeOrm(
