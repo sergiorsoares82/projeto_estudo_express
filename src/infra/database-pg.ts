@@ -13,9 +13,7 @@ const query = async (queryObject: string | QueryObject) => {
     port: process.env.POSTGRES_PORT
       ? parseInt(process.env.POSTGRES_PORT)
       : undefined,
-    // ssl: {
-    //   rejectUnauthorized: false,
-    // },
+    ssl: process.env.NODE_ENV === "development" ? false : true,
   });
   client.on("error", (err) => {
     console.error("PostgreSQL error:", err);
