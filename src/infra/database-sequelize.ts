@@ -16,7 +16,16 @@ const querySequelize = async (queryObject: string | QueryObject) => {
     port: process.env.SEQUELIZE_PORT
       ? parseInt(process.env.SEQUELIZE_PORT)
       : 5432,
-    ssl: process.env.NODE_ENV === "development" ? false : true,
+    dialectOptions:
+      process.env.NODE_ENV === "development"
+        ? {}
+        : {
+            // ssl: true,
+            ssl: {
+              require: process.env.NODE_ENV === "development" ? false : true,
+              rejectUnauthorized: false, // dependendo do provedor do banco
+            },
+          },
   });
 
   try {
