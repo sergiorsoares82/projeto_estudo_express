@@ -1,5 +1,10 @@
 import pg from "pg";
-const query = async (queryObject: string) => {
+interface QueryObject {
+  text: string;
+  values: any[];
+}
+
+const query = async (queryObject: string | QueryObject) => {
   const client = new pg.Client({
     user: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
@@ -18,7 +23,10 @@ const query = async (queryObject: string) => {
 
   await client.connect();
   try {
-    const result = await client.query(queryObject);
+    const result = await client.query({
+      text: typeof queryObject === "string" ? queryObject : queryObject.text,
+      values: typeof queryObject === "string" ? [] : queryObject.values,
+    });
     return result;
   } catch (error) {
     console.error(error);

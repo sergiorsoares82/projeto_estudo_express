@@ -1,25 +1,35 @@
 import { DataSource } from "typeorm";
 
-const AppDataSource = new DataSource({
+export const AppDataSource = new DataSource({
   type: "postgres",
   host: process.env.TYPEORM_HOST,
-  port: 5436,
+  port: parseInt(process.env.TYPEORM_PORT || "5432"),
   username: process.env.TYPEORM_USER,
   password: process.env.TYPEORM_PASSWORD,
   database: process.env.TYPEORM_DATABASE,
-  synchronize: true,
+  synchronize: false,
   logging: false,
-  entities: [],
-  subscribers: [],
-  migrations: [],
+  entities: [], // adicione suas entidades aqui, se for usar ORM
 });
 
-export const queryTypeOrm = async () => {
-  console.log("PORT: ", process.env.TYPEORM_PORT);
-  console.log("PASSWORD: ", process.env.TYPEORM_PASSWORD);
-  await AppDataSource.initialize();
-  const result = await AppDataSource.query("SELECT NOW()");
-  console.log(result);
-  await AppDataSource.destroy();
-  return result;
-};
+export async function queryTypeOrm(
+  query: string | { text: string; values: any[] },
+): Promise<any> {
+  try {
+    if (!AppDataSource.isInitialized) {
+      await AppDataSource.initialize();
+    }
+
+    if (typeof query === "string") {
+      return await AppDataSource.query(query);
+    } else {
+      return await AppDataSource.query(query.text, query.values);
+    }
+  } catch (error) {
+    console.error("TypeORM Query Error:", error);
+    throw error;
+  } finally {
+    // Opcional: desconectar após cada chamada (ou gerencie globalmente)
+    await AppDataSource.destroy();
+  }
+}

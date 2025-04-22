@@ -1,7 +1,12 @@
 import { Sequelize } from "sequelize-typescript";
+import { QueryTypes } from "sequelize";
 
-const querySequelize = async () => {
-  console.log("SEQUELIZE_PORT", process.env.SEQUELIZE_PORT);
+interface QueryObject {
+  text: string;
+  values: any[];
+}
+
+const querySequelize = async (queryObject: string | QueryObject) => {
   const sequelize = new Sequelize({
     dialect: "postgres",
     host: process.env.SEQUELIZE_HOST,
@@ -11,17 +16,24 @@ const querySequelize = async () => {
     port: process.env.SEQUELIZE_PORT
       ? parseInt(process.env.SEQUELIZE_PORT)
       : 5432,
-    // dialectOptions: {
-    //   ssl: {
-    //     require: true,
-    //     rejectUnauthorized: false, // use true se tiver um certificado válido
-    //   },
-    // },
   });
 
-  const result = await sequelize.query("SELECT NOW()");
-  await sequelize.close();
-  return result;
+  try {
+    const [result] = await sequelize.query(
+      typeof queryObject === "string" ? queryObject : queryObject.text,
+      {
+        bind: typeof queryObject === "string" ? [] : queryObject.values,
+        type: QueryTypes.SELECT,
+      },
+    );
+
+    return result;
+  } catch (error) {
+    console.error("Sequelize error:", error);
+    throw error;
+  } finally {
+    await sequelize.close();
+  }
 };
 
 export default querySequelize;

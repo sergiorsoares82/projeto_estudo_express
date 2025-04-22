@@ -11,6 +11,18 @@
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "baseUrl": "./",
-  }
+    "baseUrl": ".",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "src/*": [
+        "src/*"
+      ]
+    }
+  },
+  "include": [
+    "src"
+  ]
 }
